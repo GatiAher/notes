@@ -1,0 +1,82 @@
+Helpful Applications
+
+- - - - - - - - - -
+
+General Keyboard Shortcuts:
+* windows key : see all windows
+* windows key + arrow : window change
+* windows key + tab : window change
+* alt + shift + t : terminal
+* ctrl + s : save
+
+- - - - - - - - - -
+
+General:
+* firefox:
+	* ctrl + t : new tab
+	* ctrl + shift + t : ressurect tab
+	* ctrl + w : quit tab
+	* ctrl + k : search engine
+* slack
+	# TODO: learn more about features
+* htop: task manager
+	# TODO: learn more about features
+* tqdm: progress bar for for-loops
+	# TODO: use
+* gedit: TextEditor
+	* open from terminal
+* nautilus: File Manager
+
+- - - - - - - - - -
+
+fish:
+* stdin and stdout can be redirected via the familiar < and >. stderr is redirected with a >2.
+	* > grep fish < /etc/shells > ~/output.txt 2> ~/errors.txt
+* accept autosuggestion: → or ControlF. 
+* accept single word of autosuggestion : Alt→
+
+- - - - - - - - - -
+
+Python:
+* numpy, scipy
+* docstrings, doctest
+
+- - - - - - - - - -
+
+Atom 
+	* ctrl + shift + p : command panel
+	* ctrl + g : go to line
+	* ctrl + r : jump to function (symbols-view)
+	* ctrl + shift + m: markdown
+
+Atom Packages:
+* expose
+	* alt + shift + e : toggle atom windows
+* highlight-selected
+* minimap
+* teletype
+* script
+	ctrl + shift + b : run script in atom
+* todo-show
+	alt + shift + T : Finds all TODO, FIXME, CHANGED, XXX, 
+	IDEA, HACK, NOTE, REVIEW, NB, BUG, QUESTION, COMBAK, TEMP
+
+- - - - - - - - - -
+
+WANT TO USE:
+
+General:
+* regular expressions
+
+WebDev:
+* MEAN stack (Javascript)
+* HTML / CSS stylesheets
+* websockets
+
+Data Analytics:
+* tableu
+
+DevOps:
+* Docker, Kubernetes
+
+

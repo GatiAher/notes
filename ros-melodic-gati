@@ -1,0 +1,175 @@
+
+Installing ROS melodic: http://wiki.ros.org/melodic/Installation/Ubuntu
+
+Helpful ROS Tutorial: http://wiki.ros.org/ROS/Tutorials
+
+* NOTE: --> now fish is set-up (use bass) 
+* NOTE: cd into catkin workspace in order to source automatically
+* NOTE: sudo apt install terminator --> now multiple terminals
+* NOTE: use catkin build (not catkin_make)
+* NOTE: Don't forget to chmod +x your file
+- - - - - - - - - -
+
+@ ALL IN SEPERATE TERMINALS - GET ACCESS TO USB CAMERA
+
+$ roscore
+$ rosrun usb_cam usb_cam_node
+$ rosrun image_view image_view image:=/usb_cam/image_raw
+
+- - - - - - - - - -
+
+@ HOW TO LET ROS PLAY HAPPILY WITH FISH:
+
+% https://yodahuang.github.io/articles/How-to-let-ROS-play-happily-with-fish/
+% http://wiki.ros.org/rosbash
+
+1.) Getting functionalities like roscd and rosed
+# to: ~/.config/fish/config.fish
+# or to: /fish/conf.d/rosfish.fish. 
+$ add: source /opt/ros/melodic/share/rosbash/rosfish
+
+2.) sourcing catkin workspace
+* install bass as bridge between fish and shell
+* every time you need to source your workspace, run this: 
+$ bass source devel/setup.bash
+
+3.) source catkin automatically
+# Place the following file in: ~/.config/fish/conf.d
+# or in: ~/.config/fish/conf.d/catkin.autosource.fish
+* name it catkin.autosource.fish or whatever
+
+function catkinSource --on-variable PWD
+    status --is-command-substitution; and return
+    if test -e ".catkin_workspace"; or test -e ".catkin_tools"
+        bass source devel/setup.bash
+        echo "Configured the folder as a workspace"
+    end
+end
+
+- The script monitor the variable PWD, which is the location you’re at, if it changes, search for the .catkin_workspace file (which in the workspace when you create it). If it finds the file, the source it for you.
+
+- - - - - - - - - -
+
+@ USING ROSBAG - research
+
+* task use computer vision, helpful tips, use loop
+
+* followed tutorial to create test_catkin_ws directory
+% https://roboticsbackend.com/ros-multiple-catkin-workspaces/
+
+- - - - - - - - - -
+
+@ TO PLAY NATHAN ALEX CHESSBOARD VIDEO
+
+* IN SEPERATE TERMINALS RUN:
+$ cd CODE/IARC/catkin_ws
+
+$ rosbag info  nathan_alex_chessboard.bag
+--> 
+types:       sensor_msgs/Image [060021388200f6f0f447d0fcd9c64743]
+topics:      /usb_cam/image_raw   1219 msgs    : sensor_msgs/Image
+
+$ roscore
+$ rosrun usb_cam usb_cam_node
+$ rosrun image_view image_view image:=/usb_cam/image_raw
+$ rosbag play nathan_alex_chessboard.bag
+
+- - - - - - - - - -
+
+@ CLONING REPO
+
+* NOTE: use ;and instead of && (for fish)
+
+# Clone this repository into a working catkin_ws of a ROS Kinetic install, then...
+$ roscd iarc_main/.. 
+$ rosdep install -iy --from-paths .
+$ sudo apt-get install python python-all-dev python-pip build-essential swig git libpulse-dev dev-libasound2
+$ sudo apt-get install portaudio19-dev python-all-dev python3-all-dev
+$ sudo pip install pyaudio
+	--> failed using pip, suceeded using pip3
+$ pip install --user -r requirements.txt
+	--> used pip
+
+# 6 of 17 packages suceeded
+
+- - - - - - - - - -
+
+@ USE COMPUTER VISION TO IDENTIFY CHESS BOARD
+
+% follow tutorial: http://wiki.ros.org/cv_bridge/Tutorials/ConvertingBetweenROSImagesAndOpenCVImagesPython
+
+# NOTE: using rosbag: nathan_alex_chessboard.bag
+
+# NOTE: using cv_bridge package (in vision_opencv stack), OpenCV 3
+
+# NOTE: opencv3's package is called cv2 (cv2 is python numpy vs cv which is python pseudo-C)
+
+# NOTE: using cv2.goodFeaturesToTrack because cv2.findChessboardCorners only works on not partially cutoff chessboards with a big white boarder.
+
+USAGE:
+$ roscore
+$ rosrun iarc_forebrain gati_cv_identify_chessboard.py <bag-file.bag>
+
+- - - - - - - - - - -
+
+@ USE SUBSCRIBER
+
+* Rewrote it to use rospy.Subscriber, not rosbag.
+$ roscore
+$ rosbag play nathan_alex_chessboard.bag
+$ rosrun iarc_forebrain gati_cv_identify_chessboard_no_arg.py
+
+- - - - - - - - - - -
+
+@ ACCESS WINDOWS NETWORK SHARES (SANDBOX) TO GET ROSBAG DATA
+
+% http://wikis.olin.edu/linux/doku.php?id=accessing_windows_shares
+
+* smbclient - provides an FTP-like interface to accessing Windows network shares
+
+	$ smbclient -U <username> -W olin.edu //<server>/<share>
+	$ smbclient -U gaher -W olin.edu //fsvs01/sandbox
+
+* Manually Mounting a CIFS/SMB (Windows) Filesystem
+
+	$ sudo apt-get install cifs-utils
+	$ mkdir -p ~/fsvs01/sandbox
+	
+	* Mount the share by running:
+	
+	$ sudo mount //<server>/<share> <mount_point> -o user=<windows_username>,workgroup=olin.edu,uid=<linux_username>
+	
+	# FILLED IN:
+	$ sudo mount //fsvs01/sandbox ~/fsvs01/sandbox -o user=gaher,workgroup=olin.edu,uid=gaher
+
+	* two passwords: one for sudo, and one for your Windows account password for the actual mount operation.
+
+	*  When you are finished, you can unmount the share by running: 
+
+	$ sudo umount <mount_point>
+
+	# FILLED IN
+	$ sudo umount ~/fsvs01/sandbox
+
+	# Any mounted network shares will also be automatically unmounted when you next reboot or power off the system. 
+
+- - - - - - - - - - -
+
+@ BOARD RECOGNITION ALGORITHM:
+% https://classes.engineering.wustl.edu/ese205/core/index.php?title=CV_Chess
+
+1. grey, then binarization through Adaptive thresholding --> allow contours to be found
+2. find edge of chessboard, make background past it black --> exclude noise
+3. canny edge detection --> infer edges of chessboard squares
+4. hough line transform --> able to infer lines in image, map grid
+
+% https://docs.opencv.org/3.4.0/d9/db0/tutorial_hough_lines.html
+# Hough line transform cv demo
+
+- - - - - - - - - - -
+
+@ DETECT PIECES
+
+1. keep track of game state of board (drone perches)
+2. keep track of grid location (drone goes to grid location)
+

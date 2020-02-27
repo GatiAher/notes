@@ -1,0 +1,138 @@
+Gati Aher
+Code For Boston - Tues, Feb 18 - plogalong
+https://github.com/codeforboston/plogalong
+
+React-Native: dev by FaceBook, Like React for Web
+XCode: simulate iPhone
+Expo: compiler, 3rd party lib of componets 
+	-> Native iOS and Android code
+Redux: for managing local state
+Database: Firebase
+Authentication: Firebase
+
+- - - - - - - - - - -
+---------------------
+
+@ START
+
+* in a terminal window, navigate to the root directory of your local clone of this repository. To launch Metro bundler and Expo's browser-based developer tools:
+	$ expo start
+
+* To run Plogalong on an iOS device:
+	1. Install Expo on your iOS device from the App Store.
+	2. Connect both your computer and your iOS device with same Wi-Fi.
+	3. In Expo XDE in your browser, select Connection > LAN
+	4. Use the Camera App on your iOS Device to scan the QR Code.
+	5. Your QR code reader will ask if you want to launch the App in Expo Client App, select "Yes"
+	6. Plogalong should load accordingly
+
+
+- - - - - - - - - - -
+---------------------
+
+###########
+# 2-18-20 #
+###########
+
+DONE:
+* Clone repo
+* Node 10.x or 12.x: v12.16.1: `nvm use 12`
+* install node modules: `npm install` ;and `sudo npm install`
+* configure Firestore
+* install Expo: npm install expo-cli --global
+* Slack: Photo + GitHub Username
+* install Xcode/Android studio -- decided not to because lack of java and space on my Ubuntu partition
+
+- - - - - - - - - - -
+
+! SOLVING EACCES ERROR FOR GOOD (WHEN npm install -g <package>
+
+% https://flaviocopes.com/npm-fix-missing-write-access-error/
+$ sudo chown -R $USER /usr/lib/node_modules
+# use correct version of node
+
+- - - - - - - - - - -
+
+! SOLVING FISH AND NVM -> AUTOMATICALLY GET CORRECT VERSION OF NODE:
+
+$ https://gist.github.com/eugenet8k/535bf3c51d1fc7c31cb8784e55d4dae4
+# copied function into conf.d (to load when shell starts) 
+* made .nvmrc with v12.16.1 in CODE/CODE_FOR_BOSTON
+
+- - - - - - - - - - -
+
+! INSTALLING ANDROID STUDIO
+
+% https://itsfoss.com/install-android-studio-ubuntu-linux/
+	* make sure you have java installed in Ubuntu
+	% https://itsfoss.com/install-java-ubuntu/
+	# android studio recommends Oracle JDK
+	$ sudo add-apt-repository ppa:webupd8team/java
+	$ sudo apt-get update
+
+- - - - - - - - - - -
+
+! DID NOT INSTALL JAVA
+
+The Oracle JDK License has changed for releases starting April 16, 2019.
+
+The new Oracle Technology Network License Agreement for Oracle Java SE is substantially different from prior Oracle JDK licenses. The new license permits certain uses, such as personal use and development use, at no cost -- but other uses authorized under prior Oracle JDK licenses may no longer be available. Please review the terms carefully before downloading and using this product. An FAQ is available here: https://www.oracle.com/technetwork/java/javase/overview/oracle-jdk-faqs.html
+
+Oracle Java downloads now require logging in to an Oracle account to download Java updates, like the latest Oracle Java 8u211 / Java SE 8u212. Because of this I cannot update the PPA with the latest Java (and the old links were broken by Oracle).
+
+For this reason, THIS PPA IS DISCONTINUED.
+
+For Oracle Java 11, see a different PPA -> https://www.linuxuprising.com/2019/06/new-oracle-java-11-installer-for-ubuntu.html
+
+That same PPA also has Oracle Java 13 -> https://www.linuxuprising.com/2019/09/install-oracle-java-13-on-ubuntu-linux.html
+
+- - - - - - - - - - -
+
+###########
+# 2-25-20 #
+###########
+
+QUESTIONS:
+* .svg: it is an image file but what is it? How are they generated?
+	- like .png
+* JSX?: what is it? 
+	- to produce React elements
+* components: are css and javascript mixed in React?
+	- they defined stylesheet at the bottom of its component file
+* constants: 
+	 - basically global constants
+* navigation:
+	- how components links and pass info to other objects
+* redux: I have heard of it, but what is it exactly
+	- REACT: views, objects, rerender, when rerender
+	- REDUX: how to handle state, bind state to views, 
+		- boilerplate heavy, decoupling/decomposing state
+		- reducers: functions that modify state and rerender state
+		- cascading complexity
+* immutable js
+	- identity comparision are value comparisons
+* CONTRIBUTING.md
+	- set plogalong as upstream
+	- where is my origin
+
+- - -
+
+DONE:
+@ PULL CHANGES
+	$ git pull origin master
+	* delete node_modules
+	$ npm install
+
+@ git: did I fork this? 
+	# no but you were supposed to; 
+	# redid all the onboarding steps from last week
+	# took about 10 minutes
+	$ git remote add upstream https://github.com/codeforboston/plogalong.git
+	$ git remote -v
+
+- - -
+
+
+
+
+

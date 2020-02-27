@@ -1,0 +1,68 @@
+
+ML Doodle Cluster
+QEA
+
+- - - - - - - - - -
+
+@ DATABASE
+# THE QUICK, DRAW! WITH GOOGLE
+$ https://quickdraw.withgoogle.com/data/ant
+$ https://github.com/googlecreativelab/quickdraw-dataset
+
+AVALIABLE IN:
+* Raw Files (.ndjson)
+* Simplified drawings files (.ndjson)
+* Binary files (.bin)
+* Numpy bitmap files (.npy) (28x28 grayscape bitmap) (np.load())
+
+- - - - - - - - - -
+
+@ SVD vs PCA
+$ https://medium.com/@jonathan_hui/machine-learning-singular-value-decomposition-svd-principal-component-analysis-pca-1d45e885e491
+t
+- SVD gives you the whole nine-yard of diagonalizing a matrix into special matrices that are easy to manipulate and to analyze. It lay down the foundation to untangle data into independent components. 
+- PCA skips less significant components. Obviously, we can use SVD to find PCA by truncating the less important basis vectors in the original SVD matrix.
+
+- - - - - - - - - -
+
+@ ALGORITHMS
+% https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know-a36d136ef68
+
+---
+
+* Gassian Distribution-Based
+	# PRO: As distance from the distribution's center increases, the probability that a point belongs to the distribution decreases. The bands show that decrease in probability
+	# CON: When you do not know the type of distribution in your data, you should use a different algorithm.
+
+---
+
+* Mean-Shift Clustering
+- sliding window, attempts to find dense areas of data points
+- centroid based, attempts to locate center point of each group/class
+- hill-climbing, shifts kernal iteratively to higher density region using mean 
+	# PRO: automatically discovers number of clusters
+	# CON: selection of window size/radius can be non-trivial
+	# CON: does not really identify outliers as noise
+
+---
+
+* K-Means Clustering
+* K-Medians (slower but less sensitive to outliers)
+	1.) first select a number of classes to use and randomly initialize their random center points. Center points are vectors of same length as each data point.
+	2.) data point classified by computing distance between point and group center
+	3.) based on classified points, recompute group center by taking mean of all the vectors in group
+	4.) repeat until group centers don't change much between iterations
+	# PRO: very fast, linear complexity O(n)
+	# CON: select how many groups/classes --> want to going insight from data by it figuring out
+	# CON Starting with random choice of cluster results on different runs --> may not be repeatable, lack consistency
+
+---
+
+* DBSCAN
+	# PRO: identifies outliers as noises, finds arbitrarily sized and shaped clusters very well
+	# CON: does not perform as well when clusters of varying density (when varying threshold and minPoint) --> high dimensional data problematic
+
+---
+
+
+

@@ -1,0 +1,40 @@
+
+VUE PINT
+
+- - - - - 
+
+@ ATOM SPECIFIC
+
+* downloaded atom packages
+- ide-vue: vue language support for Atom-IDE
+	% https://atom.io/packages/ide-vue
+- atom-ide-ui: a collection of atom uis to support language services
+- language-vue: vue component support in Atom
+
+- - - - -
+
+@ VUE SPECIFIC
+% https://vuepress.vuejs.org/
+
+- - - - -
+
+@ PInT website
+
+- original theme: vue's default components
+
+- theme: PInT wrote these components/layouts
+
+- public: things show up as is in webserver, /pint.png, not a normal page
+
+- config.js: registers all plugins, general location for configs, title of website
+
+- - - - -
+
+@ HOW TO GET WEBSITE UP
+
+$ npm install
+$ npm run dev
+
+* browser go to http://localhost:8080/
+
+- - - - -

@@ -1,0 +1,170 @@
+
+Gati Portfolio Website Notes
+
+- - - - - - - - - -
+
+##################################
+# SET UP DEVELOPMENT ENVIRONMENT #
+##################################
+
+10:45pm, Wed 2/12/2020
+
+* going through React.js tutorial: 
+	% https://reactjs.org/tutorial/tutorial.html
+
+	* installed node & npm: 
+		% https://tecadmin.net/install-latest-nodejs-npm-on-ubuntu/
+		$ sudo apt-get install curl
+		$ curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+		$ sudo apt-get install nodejs
+
+	* started following tutorial for gatsby
+
+* setup devlopment environment gatsby.js: 
+	% https://www.gatsbyjs.org/tutorial/part-zero/
+
+	* install nvm (Node Version Manager for LINUX)
+		$ sudo apt update
+		$ sudo apt-y upgrade
+		$ sudo apt-get install curl 
+			# curl allows you to transfer data and download additional dependencies.
+		$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash 
+			# to download the latest nvm version.
+
+- - - - - - - - - -
+
+* ISSUE: fish shell does not support nvm
+
+	* install fisher (fish package manager)
+		* download fisher.fish to fish's function directory
+		$ curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+		% https://github.com/jorgebucaran/fisher
+	
+	* use nvm with fish shell: 
+		% https://eshlox.net/2019/01/27/how-to-use-nvm-with-fish-shell
+		$ fisher add edc/bass
+			# to use utilities writen for bash
+	
+		$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+			# install nvm (already installed)
+
+		$ vi ~/.config/fish/functions/nvm.fish
+			# add given function nvm 
+- - - - - - - - - -
+
+	* set default Node.js
+		$ nvm install 10
+		$ nvm use 10
+			# goofed and used old version
+		$ nvm install 13
+		$ nvm use 13
+			# set most recent as default
+		$ npm --version
+		$ node --version
+
+	* install git (on Linux) # already done
+
+	* using gatsby cli
+		$ npm install -g gatsby-cli
+
+- - - - - - - - - -
+
+! ISSUE: npm ERR! code: 'EACCES', It is likely you do not have the permissions to access this file as the current user, It is likely you do not have the permissions to access this file as the current user
+
+	* Resolving EACCES permissions errors when installing packages globally: 
+	% https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
+
+	* Reinstall npm with a node version manager
+	* Downloading and installing Node.js and npm
+	% https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+	* Manually change npm’s default directory
+
+- - - - -
+
+! ISSUE: fish doesn't use config files -- it uses functions
+
+	
+	STEP 1: # TODO
+	* changing bash profile
+	$ https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally#reinstall-npm-with-a-node-version-manager
+		$ nano ~/.profile
+			# export PATH=~/.npm-global/bin:$PATH
+		$ source ~/.profile
+
+	STEP 2:
+	* changed fish's config files by copying code from github:
+		% https://github.com/rstacruz/fish-npm-global/blob/master/conf.d/npm-global.fish
+			# fisher install did not work, so copy paste
+	--> IT SURPRESSED ERRORS
+	--> rm /home/gaher/.config/fish/conf.d/npm-global.fish 
+	--> rm -r ~/.npm-global
+	# removed it because idk what it is doing
+
+! ISSUE: still unable to successfully run the Gatsby CLI (probably) due to a permissions issue
+	* Install npm packages globally without sudo on macOS and Linux
+		% https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md
+	* It says to use fish config files...
+
+	* going to research:
+
+- - - - - - - - - - -
+
+fish starts by executing commands in ~/.config/fish/config.fish. You can create it if it does not exist. 
+
+However, it is more common and efficient to use autoloading functions and universal variables.
+
+If you want to organize your configuration, fish also reads commands in .fish files in ~/.config/fish/conf.d/. See initialization for the details.
+	
+- - - - - - - - - - -
+
+! ISSUE: continue
+	* continuing with install npm guide
+		% (cont.) https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md
+
+	$ mkdir "$HOME/.npm-packages"
+	$ npm config set prefix "${HOME}/.npm-packages"
+	# If you're using fish, add the following to ~/.config/fish/config.fish: ...
+
+	$ npm install -g gatsby-cli
+	
+- - - - - - - - - - -
+
+! OKAY, so now gatsby command is recognized in .npm-packages, I'm going to undo stuff so it is recognized in
+
+	* removed lines from ~/.config/fish/config.fish
+	$ npm config set prefix "$HOME/.node_modules"
+	$ npm config list
+	$ rm -r .npm-packages
+
+	* "Gatsby: command not found" on trying to run Gatsby command after installing npm install --global gatsby-cli
+	% https://github.com/gatsbyjs/gatsby/issues/4967
+
+	# If you are using nvm, you want to use
+	$ npm config delete prefix
+	$ sudo npm install -g gatsby-cli # sudo bypasses EACCES error
+	$ npm -g ls --depth=0 # verification
+
+	--> IT WORKS, gatsby in .node_modules
+
+- - - - - - - - - - -
+
+CONCLUSION:
+
+* installed node & npm (standard)
+* installed nvm (standard) and set standard node and npm
+	! ISSUE: fish shell does not support nvm
+	* installed fisher (fish package manager) function to fish
+	* fisher add edc/bass to use bash utilities in fish
+	* added nvm.fish function to fish
+* installed gatsby-cli into .node_modules
+	! ISSUE: npm ERR! code: 'EACCES', permissions error
+	* BAD SOLUTION: create new .npm-packages directory -> 
+		different permissions, config.fish file, set npm prefix
+	* EASY SOLUTION: sudo npm install -g gatsby-cli
+	# sudo bypasses permissions error
+	# also, nvm not compatible with npm config "prefix" option, so
+	$ npm config delete prefix
+
+
+		
+	

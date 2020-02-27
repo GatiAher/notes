@@ -1,0 +1,120 @@
+
+Doodle Cluster - QEA project Gati and Eamon
+start: Feb 22, 2020
+
+- - - - -
+
+GOAL:
+
++0.) Get dataset (numpy 28x28 images)
++1.) Capture New User Input - Allen B. Downey Doodles
++2.) pca
+-3.) Cluster Google Quick Draw Images
+-4.) Plot Allen B. Downey on Cluster
+
+% https://github.com/googlecreativelab/quickdraw-dataset#the-raw-moderated-dataset
+
+# using numpy bitmap .npy, p5.js, python, quickdraw python API, PIL
+# had to install quickdraw, numpy, scipy
+$ pip3 install --user numpy scipy matplotlib ipython jupyter pandas sympy nose
+
+# to run draw.py
+$ pip3 install p5py, p5
+$ sudo apt install libglfw3
+
+- - - - -
+
+@ PYTHON QUICKDRAW API
+% https://quickdraw.readthedocs.io/en/latest/
+
+* get python quickdraw API
+% https://quickdraw.readthedocs.io/en/latest/api.html
+
+$ sudo pip3 install quickdraw
+
+- - - -
+
+Eamon -- got p5.py to draw, now researching downsample
+* 256x256 --> 28x28 .npy
+* got user input working
+* now centered
+
+Gati -- get dataset .npy image
+* python quickdraw API loads 100 images (1, 255, 255, 3) from 345 category
+* got (345000, 28, 28) size ndarry saved to images.npy and labels saved to labels.npy
+
+- - - - - 
+
+@ PCA
+
+# load numpy array
+* np.load("file.npy")
+
+# vectorize it
+
+# subtract mean of image
+% https://bic-berkeley.github.io/psych-214-fall-2016/subtract_means.html
+
+# correlation matrix
+
+# eigs
+% https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.eigs.html#scipy.sparse.linalg.eigs
+
+
+- - - - - 
+
+@ CLUSTER ALGORITHM PIPELINE
+
+* LOAD EIG VECTORS
+- np.load (images-eig-vec.npy)
+
+* TRAIN (GOOGLE DRAW)
+- np.load (images.npy, labels.npy)
+- mean center function
+- project function
+
+* TEST (USER INPUT)
+- np.load
+- mean center function
+- project function
+
+* CLUSTER ALL OF THEM
+
+- - - - -
+
+@ CLUSTER
+
+* Eamon -- k-means
+
+* Gati -- mean-shift
+- sliding window, attempts to find dense areas of data points
+- centroid based, attempts to locate center point of each group/class
+- hill-climbing, shifts kernal iteratively to higher density region using mean 
+	# PRO: automatically discovers number of clusters
+	# CON: selection of window size/radius can be non-trivial
+	# CON: does not really identify outliers as noise
+
+- - - - -
+
+@ MEAN-SHIFT
+
+- look into kernal density (kd functions, wikipedia?)
+
+* first use sklearn.cluster.MeanShift
+% https://scikit-learn.org/stable/modules/generated/sklearn.cluster.MeanShift.html
+$ pip install -U scikit-learn
+
+$ https://towardsdatascience.com/machine-learning-algorithms-part-13-mean-shift-clustering-example-in-python-4d6452720b00
+
+$ https://pythonprogramming.net/mean-shift-from-scratch-python-machine-learning-tutorial/
+
+- - - - - -
+
+@ HOW K-MEANS MIGHT BE USED
+
+@ HOW TO IMPLEMENT CLUSTERING
+
+- - - - - - 
+
+
+

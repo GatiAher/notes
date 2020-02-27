@@ -1,0 +1,116 @@
+
+Gati's Portfolio Website
+
+- - - - - - - - - - 
+
+HTML/CSS/Javascript
+
+- - - - - - - - - - 
+
+Netlify
+
+VuePress
+
+- - - - - - - - - -
+
+* https://snipcart.com/blog/choose-best-static-site-generator
+* staticgen.com 
+* https://jamstack.wtf/
+* https://brittanychiang.com/
+
+- - - - - - - - - -
+
+GETTING STARTED:
+
+Generate HTML Assets: Hand-Coding OR Static Site Generators OR Frontend Framework
+
+- - - - - - - - - -
+
+Static Site Generator
+
+Simply put, a static site generator is an application that takes your site content, applies it to templates, and generates a structure of purely static HTML files ready to be delivered to visitors.
+
+Template + Contents > Compile > Website
+
+* JAM Stack: (Javascript, API, Markup)
+* Jekyll (Ruby)
+* Hugo (Go)
+* Gatsby (JavaScript)
+* 11ty (JavaScript)
+* Next.js
+
+- - - - - - - - - -
+
+Content Management
+
+* headless CMSs - used only for "content management" tasks
+* traditional CMSs - used also for templating and frontend styling.
+
+* Forestry (Jekyll) (Hugo)
+* DatoCMS
+* Netlify CMS
+* Contentful
+* Headless WordPress
+* Ghost
+* Strapi
+* Sanity.io
+
+- - - - - - - - - -
+
+Frontend Framework
+* React
+* Vue.js
+* Preact
+
+- - - - - - - - - -
+
+Non-Technical
+
+* Stackbit (With practically zero-configuration, you can bundle a static site generator with a headless CMS and deploy a website to Netlify)
+
+- - - - - - - - - -
+
+Dynamic Features
+
+* Serverless(backend functions)
+* StaticKit (backend functions)
+* Netlify (identity, forms, and backend functions)
+* Auth0 (identity)
+* Algolia (search)
+* Snipcart (e-commerce)
+* CartQL (e-commerce)
+* Disqus or Staticman (user-generated content)
+
+CUSTOM FUCTIONS
+
+* abstract own functions into reusable APIs
+* AWS lambda functions
+* netlify functions
+
+CUSTOM DATA
+
+* FaunaDB
+* Serverless GraphQL
+
+COMMENTS
+
+FORMS
+
+E-COMMERCE
+
+SEARCH
+
+- - - - - - - - - -
+
+HOSTING (free)
+
+* Netlify
+* Zeit
+* Github Pages
+* Stackbit
+
+- - - - - - - - - -
+
+
+
+
