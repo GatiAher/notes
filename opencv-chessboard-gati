@@ -1,0 +1,67 @@
+Gati Aher - March 1, 2020
+
+CV Recognize Chessboard + Pieces
+
+- - - - -
+
+@ RECORD ROSBAG
+
+$ roscore
+$ rosrun usb_cam usb_cam_node
+$ rosrun image_view image_view image:=/usb_cam/image_raw
+$ rosbag record /usb_cam/image_raw
+
+types:       sensor_msgs/Image [060021388200f6f0f447d0fcd9c64743]
+topics:      /usb_cam/image_raw   1219 msgs    : sensor_msgs/Image
+
+@ PLAY ROSBAG
+
+$ roscore
+$ rosrun image_view image_view image:=/usb_cam/image_raw
+$ rosbag play nathan_alex_chessboard.bag
+
+@ PLAY SCRIPT
+
+$ roscore
+$ rosbag play stationary_chessboard.bag -l
+$ rosrun iarc_forebrain gati_cv_identify_chess_pieces.py
+
+
+- - - - -
+
+@ COMPONENTS
+
+1. WHERE ARE SQUARES
+	- grey
+	- binarization (global/adaptive thresholding)
+	- canny edge detection
+	- hough line transform (infer lines in image, map grid)
+	- detect intersections
+2. ARE PIECES IN SQUARES
+	- histogram
+3. WHAT PIECES ARE IN SQUARES
+	- circle detection
+	- straight
+
+4. DRONE FINDS OUT DISTANCE TO PIECE
+
+- - - - -
+
+@ BOARD RECOGNITION ALGORITHM:
+
+% https://classes.engineering.wustl.edu/ese205/core/index.php?title=CV_Chess
+
+1. grey, then binarization through Adaptive thresholding --> allow contours to be found
+2. find edge of chessboard, make background past it black --> exclude noise
+3. canny edge detection --> infer edges of chessboard squares
+4. hough line transform --> able to infer lines in image, map grid
+
+% https://docs.opencv.org/3.4.0/d9/db0/tutorial_hough_lines.html
+# Hough line transform cv demo
+
+- - - - -
+
+@ DETECT INTERSECTIONS
+
+% https://stackoverflow.com/questions/46565975/find-intersection-point-of-two-lines-drawn-using-houghlines-opencv/49590801
+

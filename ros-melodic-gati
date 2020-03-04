@@ -155,19 +155,6 @@ $ rosrun iarc_forebrain gati_cv_identify_chessboard_no_arg.py
 
 - - - - - - - - - - -
 
-@ BOARD RECOGNITION ALGORITHM:
-% https://classes.engineering.wustl.edu/ese205/core/index.php?title=CV_Chess
-
-1. grey, then binarization through Adaptive thresholding --> allow contours to be found
-2. find edge of chessboard, make background past it black --> exclude noise
-3. canny edge detection --> infer edges of chessboard squares
-4. hough line transform --> able to infer lines in image, map grid
-
-% https://docs.opencv.org/3.4.0/d9/db0/tutorial_hough_lines.html
-# Hough line transform cv demo
-
-- - - - - - - - - - -
-
 @ DETECT PIECES
 
 1. keep track of game state of board (drone perches)

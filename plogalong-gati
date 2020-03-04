@@ -111,6 +111,8 @@ QUESTIONS:
 		- cascading complexity
 * immutable js
 	- identity comparision are value comparisons
+	- Immutable is a JavaScript library implementing persistent data structures. It is performant and has an idiomatic JavaScript API.
+	- Immutable and most similar libraries are orthogonal to Redux. Feel free to use them together!
 * CONTRIBUTING.md
 	- set plogalong as upstream
 	- where is my origin
