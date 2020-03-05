@@ -65,3 +65,26 @@ $ rosrun iarc_forebrain gati_cv_identify_chess_pieces.py
 
 % https://stackoverflow.com/questions/46565975/find-intersection-point-of-two-lines-drawn-using-houghlines-opencv/49590801
 
+- - - - -
+
+@ GET SQUARE (USING OPEN CV GET PERSPECTIVE)
+
+% https://www.pyimagesearch.com/2014/08/25/4-point-opencv-getperspective-transform-example/
+
+- - - - -
+
+@ CUT SHORT FRAMES THAT HAD NO FOREGROUND / INTERSECTIONS
+make sure that frame without contour doesn't all the other stuff
+
+- - - - -
+
+@ GO THROUGH THIS
+% https://aishack.in/tutorials/sudoku-grabber-opencv-plot/
+
+
+
+
+
+
+
+
