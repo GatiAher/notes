@@ -1,0 +1,70 @@
+
+Gati Aher
+Free Time Project
+Thurs, March 19, 2020
+
+GOAL:
+1.) Clusters of similar xkcd comics
+2.) Interactive UI
+
+- - - - - - - - - - -
+
+@ Specific Data Analysis 
+
+for 50 components, sum explained variance went from .17 --> .12 after that change...
+
+222 --> 225
+
+5 plots of 5 x 9
+
+- - - - - - - - - - -
+
+@ Visualization
+
+* HoloViews 
+	- Lets you build data structures that are conducive to visualization. Once you move your data into a HoloView Container object, such as a GridMatrix for multi-variate analysis or a Layout for displaying components next to each other, you can explore the data visually. 
+	- Plotting happens separately on the matplotlib or Bokeh backends, so you can focus on the data, not writing plotting code.
+	- When using the Bokeh backend, you can combine the slider component with Bokeh's tools for exploring plots, like zooming and panning.
+	- HoloViews integrates with Seaborn and pandas, opening up the power of pandas DataFrames and Seaborn's statistical charts.
+
+* Bokeh
+
+* Seaborn
+
+* Pandas
+
+- - - - - - - - - - -
+
+* 
+
+* 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

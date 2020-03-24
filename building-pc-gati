@@ -1,0 +1,23 @@
+BUILDING DESKTOP PC
+Gati Aher, March 14, 2020
+
+- - - - - - - - - -
+
+% https://medium.com/the-mission/how-to-build-the-perfect-deep-learning-computer-and-save-thousands-of-dollars-9ec3b2eb4ce2
+
+CPU
+* 8+ cores / 16+ threads / 40+ PCIe
+* AMD = better value
+* aim for second generation $200-$400
+
+GPU
+* 1-2 GPUs
+* Nvidia GPU
+* blower style fans
+* 2060 Super (8GB / 2176 Cores / 272 Tensor Cores / $410)
+
+Storage
+* M.2 SSD NVMe
+
+Memory
+* DDR4 memory

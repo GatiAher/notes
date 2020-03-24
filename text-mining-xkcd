@@ -1,0 +1,18 @@
+
+GOAL: xkcd, text similarity between comics
+
+1.) get all xkcd transcripts from explain xkcd
+	- different post-processing: remove characters, use explainations
+2.) calculate cosine similarity between texts
+	- article with different vectors
+3.) text clustering with Metric Multi-Dimensional Scaling (MDS)
+	- use scikit-learn
+
+- - - - -
+
+xkcd_data_sourcer.py : a file to extract the text from pages on the 'explain xkcd' html pages
+
+@ USING
+- requests : get html
+- BeautifulSoup : prettify html
+- lxml : lxml is the most feature-rich and easy-to-use library for processing XML and HTML in the Python language.

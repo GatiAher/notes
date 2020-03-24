@@ -1,0 +1,90 @@
+
+Gati Aher
+Fun Day Project
+Xkcd Desktop Background - Mon, March 9, 2020
+
+Gnome
+Fish / Bash Scripting
+Python
+Cron / Crontab: schedule scripts to run
+
+Result: Dynamically changing desktop wallpaper
+
+- - - - - - - - - -
+
+@ CREATED home/gaher/bin directory 
+
+# to store personal scripts
+# default already in PATH
+
+ - - - - - - - - - -
+
+@ RAN GNOME COMMAND TO CHANGE BACKGROUND FROM TERMINAL
+
+	# BLANK
+
+	$ gsettings set org.gnome.desktop.background picture-uri "file:///path/to/wallpaper.jpg"
+
+	# WALLPAPER DIRECTORY
+
+	/home/gaher/Pictures/Wallpapers/belladona.jpg
+
+	/home/gaher/Pictures/Wallpapers/spraypaint.jpg
+
+	# FILLED IN
+
+	$ gsettings set org.gnome.desktop.background picture-uri /home/gaher/Pictures/Wallpapers/belladona.jpg
+
+	$ gsettings set org.gnome.desktop.background picture-uri /home/gaher/Pictures/Wallpapers/spraypaint.jpg
+
+- - - - - - - - - - -
+
+STEPS: 
+
+1.) write fish script to change background
+2.) add python
+3.) check if wifi connected / try except use default
+4.) parse html to get most recent comic
+5.) schedule with cron
+
+5.) see if can use 
+- % https://apod.nasa.gov/apod/astropix.html
+- % https://apod.nasa.gov/apod/ap050615.html
+- % view-source:https://apod.nasa.gov/apod/image/0506/casa_spitzer_big.jpg
+
+- - - - -
+
+GENERALLY
+1.) python save/return xkcd file
+2.) fish read file and set background
+3.) cron to schedule
+
+- - - - - - - - - - - 
+
+@ CRON
+
+SHELL=/bin/bash 
+PATH=/home/gaher/bin:/home/gaher/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+* get a MTA (Mail Transfer Agent) 
+- Most Linux distributions have a mail service including an MTA (Mail Transfer Agent) installed. Ubuntu doesn't though
+
+$ sudo apt-get install postfix
+
+* TO READ CRON MAIL LOG:
+$ tail -f /var/mail/gaher
+
+- - - - -
+
+PID=$(pgrep -u $LOGNAME gnome-session)
+address=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$PID/environ|cut -d= -f2-)
+export DBUS_SESSION_BUS_ADDRESS=$address
+
+- - - - -
+
+1 * * * * ~/bin/change_background_scripts/change_background.sh >> ~/test.txt 2>&1
+
+
+
+
+
